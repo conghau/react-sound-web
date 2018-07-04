@@ -1,0 +1,132 @@
+.header_nav {
+  height: 50px;
+  background: #0e151f;
+  padding: 0 50px;
+  position: fixed;
+  width: 100%;
+  min-width: 1120px;
+  z-index: 3;
+  top: 0;
+  left: 0;
+}
+.header_nav__logo {
+  height: 100%;
+  float: left;
+  width: 15%;
+}
+.header_nav__logo a {
+  /*background: orange*/
+  height: 100%;
+  display: inline-block;
+  color: #fff;
+  line-height: 50px;
+  font-size: 32px;
+  font-family: 'Cabin Sketch', cursive;
+  width: 100%;
+  text-align: center;
+}
+.header_nav__searchBar {
+  width: 40%;
+  padding: 7px 20px;
+  float: left;
+  position: relative;
+}
+.header_nav__searchBar input {
+  width: 100%;
+  background: transparent;
+  outline: 0;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  border: 1px solid #4c4c5f;
+  border-radius: 3px;
+  display: block;
+  margin: 0;
+  font-size: 15px;
+  padding: 8px 24px 8px 40px;
+}
+.header_nav__search-wrapper {
+  background-color: #17202a;
+  position: relative;
+}
+.header_nav__search-wrapper i {
+  color: #fff;
+  position: absolute;
+  font-size: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+}
+.header_nav__nav-menu a {
+  text-transform: uppercase;
+  display: inline-block;
+  height: inherit;
+  line-height: 50px;
+  vertical-align: middle;
+  padding: 0 20px;
+  color: white;
+  float: left;
+  font-size: 13px;
+}
+.header_nav .nav-menu-link-active:before {
+  visibility: visible !important;
+  -webkit-transform: scaleX(1) !important;
+  transform: scaleX(1) !important;
+}
+.header_nav__auth-btns {
+  width: 15%;
+  height: 50px;
+  display: inline-block;
+}
+.header_nav__auth-btns a {
+  text-transform: uppercase;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  font-size: 13px;
+  padding: 5px 8px;
+  border-radius: 3px;
+  width: 50%;
+  float: left;
+  color: white;
+}
+.header_nav__auth-btns a img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.header_nav__navRight {
+  width: 30%;
+  float: left;
+  height: 50px;
+}
+.header_nav .user {
+  height: 50px;
+  width: 15%;
+  float: right;
+  line-height: 50px;
+  vertical-align: middle;
+}
+.header_nav .user a {
+  text-transform: uppercase;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  font-size: 13px;
+  padding: 5px 8px;
+  border-radius: 3px;
+  width: 50%;
+  float: left;
+  color: white;
+}
+.header_nav .user a:first-child {
+  color: #15d2fd;
+}
+.header_nav .user a img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}

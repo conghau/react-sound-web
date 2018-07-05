@@ -1,1 +1,3 @@
-@import "scss/HeaderNav";
+@import "./scss/base";
+@import "../components/HeaderNav/HeaderNav";
+@import "../components/Player/Player";

@@ -1,0 +1,12 @@
+.comma a {
+  margin-right: 3px;
+}
+.comma a:hover {
+  text-decoration: underline;
+}
+.comma a:after {
+  content: ', ';
+}
+.comma a:last-child:after {
+  content: '';
+}

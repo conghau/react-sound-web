@@ -5,22 +5,49 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 
 // Module root components
-import Home from './containers/HomePage';
 import UserPage from './containers/UserPage';
-import AlbumsPage from './containers/AlbumsPage';
-import PlaylistPage from './containers/PlaylistPage';
-import ChartsPage from './containers/ChartsPage';
-import ArtistsPage from './containers/ArtistsPage';
-import SongPage from './containers/SongPage';
+
+import Loadable from 'react-loadable';
+import { Loading } from './components/Loading/index';
+
+const LoadableHomePage = Loadable({
+  loader: () => import('./containers/HomePage'),
+  loading: Loading,
+  delay: 50000
+});
+const LoadableAlbumsPage = Loadable({
+  loader: () => import('./containers/AlbumsPage'),
+  loading: Loading
+});
+const LoadablePlaylistPage = Loadable({
+  loader: () => import('./containers/PlaylistPage'),
+  loading: Loading
+});
+const LoadableSongPage = Loadable({
+  loader: () => import('./containers/SongPage'),
+  loading: Loading
+});
+const LoadableArtistsPage = Loadable({
+  loader: () => import('./containers/ArtistsPage'),
+  loading: Loading
+});
+const LoadableChartsPage = Loadable({
+  loader: () => import('./containers/ChartsPage'),
+  loading: Loading
+});
 
 export default (
   <Switch>
     <Route exact path="/user-detail" component={UserPage} />
-    <Route exact path="/" component={Home} />
-    <Route exact path="/albums" component={AlbumsPage} />
-    <Route exact path="/charts" component={ChartsPage} />
-    <Route exact path="/artists" component={ArtistsPage} />
-    <Route exact path="/album/playlist/:title/:id" component={PlaylistPage} />
-    <Route exact path="/song/:title/:id" component={SongPage} />
+    <Route exact path="/" component={LoadableHomePage} />
+    <Route exact path="/albums" component={LoadableAlbumsPage} />
+    <Route exact path="/charts" component={LoadableChartsPage} />
+    <Route exact path="/artists" component={LoadableArtistsPage} />
+    <Route
+      exact
+      path="/album/playlist/:title/:id"
+      component={LoadablePlaylistPage}
+    />
+    <Route exact path="/song/:title/:id" component={LoadableSongPage} />
   </Switch>
 );

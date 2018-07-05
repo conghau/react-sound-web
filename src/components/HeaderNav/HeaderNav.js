@@ -2,10 +2,10 @@
  * Created by hautruong on 6/30/18.
  */
 import React from 'react';
-import './scss/_HeaderNav.scss';
-import imgLoginSvg from './assets/login.svg';
+import './_HeaderNav.scss';
+import imgLoginSvg from '../../themes/assets/login.svg';
 
-export const HeaderNav = () => {
+const HeaderNav = () => {
   return (
     <nav className="header_nav">
       <div className="header_nav__logo">
@@ -52,3 +52,5 @@ export const HeaderNav = () => {
     </nav>
   );
 };
+
+export default HeaderNav;

@@ -5,13 +5,11 @@ import routes from './routes';
 // import Player from './components/Player/Player';
 import Analyzer from './components/Analyzer/index';
 import Loadable from 'react-loadable';
-import ReactLoading from 'react-loading';
+import ReactLoading from './components/Loading/index';
 
 const LoadableHeaderNav = Loadable({
   loader: () => import('./components/HeaderNav/HeaderNav'),
-  loading: ReactLoading,
-  timeout: 100000,
-  delay: 50000
+  loading: ReactLoading
 });
 const LoadablePLayer = Loadable({
   loader: () => import('./components/Player/Player'),
@@ -25,8 +23,8 @@ class App extends Component {
         <LoadableHeaderNav />
         {/*<HeaderNav />*/}
         <div className="container animated">{routes}</div>
-        <Analyzer />
-        <LoadablePLayer />
+        {/*<Analyzer />*/}
+        {/*<LoadablePLayer />*/}
       </div>
     );
   }

@@ -12,8 +12,7 @@ import { Loading } from './components/Loading/index';
 
 const LoadableHomePage = Loadable({
   loader: () => import('./containers/HomePage'),
-  loading: Loading,
-  delay: 50000
+  loading: Loading
 });
 const LoadableAlbumsPage = Loadable({
   loader: () => import('./containers/AlbumsPage'),
@@ -27,8 +26,8 @@ const LoadableSongPage = Loadable({
   loader: () => import('./containers/SongPage'),
   loading: Loading
 });
-const LoadableArtistsPage = Loadable({
-  loader: () => import('./containers/ArtistsPage'),
+const LoadableGenreArtistsPage = Loadable({
+  loader: () => import('./containers/GenreArtistsPage'),
   loading: Loading
 });
 const LoadableChartsPage = Loadable({
@@ -42,7 +41,12 @@ export default (
     <Route exact path="/" component={LoadableHomePage} />
     <Route exact path="/albums" component={LoadableAlbumsPage} />
     <Route exact path="/charts" component={LoadableChartsPage} />
-    <Route exact path="/artists" component={LoadableArtistsPage} />
+    <Route exact path="/genre-artists" component={LoadableGenreArtistsPage} />
+    <Route
+      exact
+      path="/genre-artists/:genre/:id"
+      component={LoadableGenreArtistsPage}
+    />
     <Route
       exact
       path="/album/playlist/:title/:id"

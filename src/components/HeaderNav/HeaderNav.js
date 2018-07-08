@@ -35,7 +35,7 @@ const HeaderNav = () => {
             </a>
           </li>
           <li>
-            <a className="animating_link" href="/artists">
+            <a className="animating_link" href="/genre-artists">
               Artists
             </a>
           </li>

@@ -3,12 +3,16 @@
  */
 import React from 'react';
 import { Route, Switch } from 'react-router';
-
 // Module root components
 import UserPage from './containers/UserPage';
 
 import Loadable from 'react-loadable';
 import { Loading } from './components/Loading/index';
+
+const LoadableApp = Loadable({
+  loader: () => import('./App'),
+  loading: Loading
+});
 
 const LoadableHomePage = Loadable({
   loader: () => import('./containers/HomePage'),
@@ -30,6 +34,10 @@ const LoadableGenreArtistsPage = Loadable({
   loader: () => import('./containers/GenreArtistsPage'),
   loading: Loading
 });
+const LoadableArtistPage = Loadable({
+  loader: () => import('./containers/ArtistPage'),
+  loading: Loading
+});
 const LoadableChartsPage = Loadable({
   loader: () => import('./containers/ChartsPage'),
   loading: Loading
@@ -37,21 +45,24 @@ const LoadableChartsPage = Loadable({
 
 export default (
   <Switch>
-    <Route exact path="/user-detail" component={UserPage} />
-    <Route exact path="/" component={LoadableHomePage} />
-    <Route exact path="/albums" component={LoadableAlbumsPage} />
-    <Route exact path="/charts" component={LoadableChartsPage} />
-    <Route exact path="/genre-artists" component={LoadableGenreArtistsPage} />
-    <Route
-      exact
-      path="/genre-artists/:genre/:id"
-      component={LoadableGenreArtistsPage}
-    />
-    <Route
-      exact
-      path="/album/playlist/:title/:id"
-      component={LoadablePlaylistPage}
-    />
-    <Route exact path="/song/:title/:id" component={LoadableSongPage} />
+    <LoadableApp>
+      <Route exact path="/user-detail" component={UserPage} />
+      <Route exact path="/" component={LoadableHomePage} />
+      <Route exact path="/albums" component={LoadableAlbumsPage} />
+      <Route exact path="/charts" component={LoadableChartsPage} />
+      <Route exact path="/genre-artists" component={LoadableGenreArtistsPage} />
+      <Route exact path="/artist/:artistName" component={LoadableArtistPage} />
+      <Route
+        exact
+        path="/genre-artists/:genre/:id"
+        component={LoadableGenreArtistsPage}
+      />
+      <Route
+        exact
+        path="/album/playlist/:title/:id"
+        component={LoadablePlaylistPage}
+      />
+      <Route exact path="/song/:name/:id" component={LoadableSongPage} />
+    </LoadableApp>
   </Switch>
 );

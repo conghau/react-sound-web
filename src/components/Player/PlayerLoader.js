@@ -2,7 +2,7 @@
  * Created by hautruong on 7/4/18.
  */
 import React from 'react';
-import imgBarSvg from '../../themes/assets/bars.svg';
+import * as imgBarSvg from '../../themes/assets/bars.svg';
 
 const PlayerLoader = () => (
   <div className="player-loading">

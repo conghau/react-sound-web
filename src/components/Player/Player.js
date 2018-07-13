@@ -3,13 +3,18 @@
  */
 import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
-import InputRange from 'react-input-range';
+// import {Link} from 'react-router-dom';
+// import InputRange from 'react-input-range';
+import InputRange from '../InputRange';
 import PlayerLoader from './PlayerLoader';
 import initAnalyzer from '../../helper/initAnalyzer';
 import LinksByComma from '../LinksByComma';
+import { Link } from '../Link';
 import { get } from 'lodash';
-// import { requestInterval, clearRequestInterval } from '../../requestInterval';
+import {
+  requestInterval,
+  clearRequestInterval
+} from '../../helper/requestInterval';
 import {
   changeAlias,
   getSongUrl,
@@ -20,19 +25,21 @@ import {
 import './_Player.scss';
 
 class Player extends PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       progress: 0,
       isSeeking: false,
       isPlaying: false,
-      loop: false
+      loop: false,
+      id: props.id || 0
     };
+    this.audio = null;
   }
 
   componentDidMount() {
     window.addEventListener('blur', this.windowBlur.bind(this));
-    this.audio = this.refs.audio;
+    // this.audio = this.refs.audio;
     this.audio.addEventListener('loadeddata', this.onLoadedData.bind(this));
     this.audio.addEventListener('play', this.onPlay.bind(this));
     this.audio.addEventListener('pause', this.onPause.bind(this));
@@ -40,6 +47,8 @@ class Player extends PureComponent {
 
     // initialize the audio analyzer
     initAnalyzer(this.audio);
+    console.log(this.audio);
+    this.setState({ audio: this.audio });
   }
 
   windowBlur() {
@@ -49,55 +58,75 @@ class Player extends PureComponent {
   }
 
   componentWillUnmount() {
-    // clearRequestInterval(this.timer);
+    clearRequestInterval(this.timer);
   }
 
   onLoadedData() {
+    console.log('onLoadedData');
+    console.log(this.audio.readyState);
     if (this.audio.readyState >= 2) {
       this.audio.play();
     }
   }
 
   onPlay() {
-    // this.timer = requestInterval(this.update.bind(this), 50);
-    this.setState({ isPlaying: true });
+    console.log('onPlay');
+    this.timer && clearRequestInterval(this.timer);
+    this.timer = requestInterval(this.update.bind(this), 50);
+    if (this.audio) {
+      this.audio.play();
+      this.setState({ isPlaying: true });
+    }
   }
 
-  clearRequestInterval = () => {};
-
   onPause() {
-    // clearRequestInterval(this.timer);
-    this.setState({ isPlaying: false });
+    clearRequestInterval(this.timer);
+    if (this.audio) {
+      this.audio.pause();
+      this.setState({ isPlaying: false });
+    }
   }
 
   onEnded() {
     this.playPrevOrNextSong('next');
-    // clearRequestInterval(this.timer);
+    clearRequestInterval(this.timer);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.id !== this.state.id) {
+      console.log('componentWillReceiveProps_pause_id');
+      this.onPause();
+      this.setState({ id: nextProps.id });
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
     if (nextState.isPlaying !== this.state.isPlaying) {
       if (nextState.isPlaying) {
-        this.audio.play();
+        console.log('componentWillUpdate___play');
+        this.onPlay();
+        // this.audio.play();
       } else {
-        this.audio.pause();
+        console.log('componentWillUpdate___pause');
+        this.onPause();
+        // this.audio.pause();
       }
     }
 
-    // if (!isTwoObjectEqual(nextProps.queueIds, this.props.queueIds) &&
-    //   !nextProps.queueIds.includes(this.props.songData.id) &&
-    //   nextProps.queue[0]
-    // ) {
-    //   const { name, id } = nextProps.queue[0];
-    //   this.props.fetchSong(changeAlias(name), id); // changeAlias {func}: escape ut8 character
-    //   if (/\/song\//.test(window.location.href)) {
-    //     // only redirect if is on the song route
-    //     browserHistory.push(`/song/${changeAlias(name)}/${id}`);
-    //   }
-    // }
-    const { playerState } = nextProps || {};
-    const nextPercent = get(nextProps, 'playerState.playedPercent', 0);
-    const currentPercent = get(this.props, 'playerState.playedPercent', 0);
+    if (
+      !isTwoObjectEqual(nextProps.queueIds, this.props.queueIds) &&
+      !nextProps.queueIds.includes(this.props.id) &&
+      nextProps.queue[0]
+    ) {
+      const { name, id } = nextProps.queue[0];
+      this.props.fetchSong(changeAlias(name), id); // changeAlias {func}: escape ut8 character
+      if (/\/song\//.test(window.location.href)) {
+        // only redirect if is on the song route
+        this.context.router.history.push(`/song/${changeAlias(name)}/${id}`);
+      }
+    }
+    const nextPercent = get(nextProps, 'playedPercent', 0);
+    const currentPercent = get(this.props, 'playedPercent', 0);
 
     if (nextPercent !== currentPercent && nextPercent) {
       this.audio.currentTime = (this.audio.duration * nextPercent) / 100;
@@ -106,7 +135,7 @@ class Player extends PureComponent {
 
   findSong(prevOrNext) {
     const queue = this.props.queue;
-    const currId = this.props.songData.id;
+    const currId = this.props.id;
     let index;
 
     for (let i = 0, length = queue.length; i < length; i++) {
@@ -142,11 +171,12 @@ class Player extends PureComponent {
     if (alias) {
       this.props.fetchSong(alias, id);
     } else {
-      // this.props.fetchSong(changeAlias(name), id); // changeAlias {func}: escape ut8 character
+      this.props.fetchSong(changeAlias(name), id); // changeAlias {func}: escape ut8 character
     }
   }
 
   togglePlayBtn() {
+    console.log('togglePlayBtn');
     this.setState({ isPlaying: !this.state.isPlaying });
   }
 
@@ -161,19 +191,17 @@ class Player extends PureComponent {
   }
 
   update() {
-    const lyric = this.props.songData.lyric;
+    console.log('update');
+    const lyric = this.props.lyric;
+    this.updateProgressbar();
     if (!lyric.length) {
       clearInterval(this.timer);
       return;
     }
 
-    this.updateProgressbar();
+    // this.updateProgressbar();
 
-    const {
-      playerState: { lyric1, lyric2 },
-      updateLyricPercent,
-      updateLyric
-    } = this.props;
+    const { lyric1, lyric2, updateLyricPercent, updateLyric } = this.props;
 
     // reset lyric state
     if (
@@ -182,6 +210,7 @@ class Player extends PureComponent {
     ) {
       // clear lyric when the this.audio is playing with beat only
       updateLyric([], []);
+      // updateLyric([], []);
     }
 
     for (let i = 0; i < lyric.length; i++) {
@@ -214,11 +243,11 @@ class Player extends PureComponent {
     }
   }
 
-  handleChange(value) {
+  handleChange = value => {
     this.setState({ progress: value, isSeeking: true });
-  }
+  };
 
-  handleChangeComplete(value) {
+  handleChangeComplete = value => {
     if (value == 100) {
       this.props.updateLyric([], []);
     }
@@ -230,22 +259,48 @@ class Player extends PureComponent {
     }
 
     this.setState({ isSeeking: false });
-  }
+  };
 
   render() {
-    const { songData, queue } = this.props;
+    const {
+      name,
+      id,
+      source,
+      thumbnail,
+      artists,
+      queue,
+      isFetching,
+      type
+    } = this.props;
     let { isPlaying, loop, progress } = this.state;
-    const { name, id, source, thumbnail, artists } = songData || {};
     let queueLength = get(queue, 'length', 0);
     return (
       <div className="player">
-        <audio
-          autoPlay
-          src={source && source['128']}
-          crossOrigin="anonymous"
-          ref="audio"
-          loop={loop}
-        />
+        {type === 'audio' ? (
+          <audio
+            src={source && source['128']}
+            crossOrigin="anonymous"
+            // ref="audio"
+            ref={c => {
+              this.audio = c;
+            }}
+            loop={loop}
+          />
+        ) : (
+          <video
+            autoPlay={false}
+            src={
+              (source && source['mp4'] && source['mp4']['480p']) ||
+              source['mp4']['360p']
+            }
+            crossOrigin="anonymous"
+            ref={c => {
+              this.audio = c;
+            }}
+            loop={loop}
+            style={{ display: 'none' }}
+          />
+        )}
         <img src={thumbnail} className="player-song-thumbnail" alt="" />
         <div className="player-info">
           <Link
@@ -260,10 +315,10 @@ class Player extends PureComponent {
             data={artists}
             titleEntry="name"
             pathEntry="link"
-            definePath={link => link.replace('/nghe-si/', '/artist/')}
-            defineTitle={title =>
-              title.replace('Nhiều nghệ sĩ', 'Various artists')
-            }
+            // definePath={link => link.replace('/nghe-si/', '/artist/')}
+            // defineTitle={title =>
+            //   title.replace('Nhiều nghệ sĩ', 'Various artists')
+            // }
           />
           {/*  <Link
            to={`/artist/${changeAlias(artists[0])}`}
@@ -302,8 +357,8 @@ class Player extends PureComponent {
             maxValue={100}
             minValue={0}
             value={parseInt(progress, 10)}
-            onChange={this.handleChange.bind(this)}
-            onChangeComplete={this.handleChangeComplete.bind(this)}
+            onChange={this.handleChange}
+            onChangeComplete={this.handleChangeComplete}
           />
           <span>
             {this.audio &&
@@ -326,23 +381,28 @@ class Player extends PureComponent {
             <img src="/svg/playlist.svg" />
           </button>
         </div>
-        {this.props.isFetching && <PlayerLoader />}
+        {isFetching && <PlayerLoader />}
       </div>
     );
   }
 }
 
 Player.propTypes = {
-  playerState: PropTypes.object.isRequired,
+  // playerState: PropTypes.object.isRequired,
   updateLyric: PropTypes.func.isRequired,
   updateLyricPercent: PropTypes.func.isRequired,
-  songData: PropTypes.object.isRequired,
+  // songData: PropTypes.object.isRequired,
   fetchSong: PropTypes.func.isRequired,
   queue: PropTypes.array.isRequired,
   queueIds: PropTypes.array,
   toggleQueue: PropTypes.func.isRequired,
   togglePushRoute: PropTypes.func.isRequired,
-  isFetching: PropTypes.bool.isRequired
+  isFetching: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  source: PropTypes.object.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  artists: PropTypes.array.isRequired
 };
 
 export default Player;

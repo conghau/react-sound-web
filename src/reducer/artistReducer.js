@@ -4,21 +4,13 @@
 import * as types from '../actions/actionConstant';
 
 const initialState = {
-  defaultAlbums: [],
-  albums: [],
-  numberOfPages: 0,
-  pageChunkIndex: 0,
-  pageChunks: [],
-  playlist: {}
+  artist: {}
 };
 export default function(state = initialState, action) {
   switch (action.type) {
-    case types.FETCH_GENRE_ARTISTS_SUCCESS:
-      let { defaultArtists } = action.data;
-      return { ...state, defaultArtists, genreArtists: {} };
-    case types.FETCH_GENRE_DETAIL_ARTISTS_SUCCESS:
-      let { genreArtists } = action.data;
-      return { ...state, genreArtists: genreArtists[0] };
+    case types.FETCH_SINGLE_ARTIST_SONGS_SUCCESS:
+      let { artist } = action.data;
+      return { ...state, ...artist };
     default:
       return state;
   }

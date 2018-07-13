@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { artistAction } from '../actions/artistActions';
+import { genreArtistAction } from '../actions/genreArtistActions';
 import GenreMenu from '../components/GenreMenu/GenreMenu';
 import GenreArtistView from '../components/GenderArtistView/GenreArtistView';
 import ArtistCard from '../components/ArtistCard/ArtistCard';
@@ -113,11 +113,11 @@ class GenreArtistsPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return { ...state.artistReducer, isLoading: false };
+  return { ...state.genreArtistReducer, isLoading: false };
 }
 
 function mapDispatchToProps(dispatch) {
-  const { fetchGenreArtists } = artistAction;
+  const { fetchGenreArtists } = genreArtistAction;
   return bindActionCreators({ fetchGenreArtists }, dispatch);
 }
 export default connect(

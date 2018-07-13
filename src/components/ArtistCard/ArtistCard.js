@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../Link';
 import { changeAlias } from '../../helper/func';
-// import LazyloadImage from '../../LazyloadImage';
+// import LazyLoadImage from '../../LazyLoadImage';
 import './ArtistCard';
 
 const ArtistCard = props => {
@@ -11,7 +11,7 @@ const ArtistCard = props => {
     <div className="artist-card">
       <Link to={url}>
         <img src={props.thumb} />
-        {/*<LazyloadImage className="artist-image" src={props.thumb}/>*/}
+        {/*<LazyLoadImage className="artist-image" src={props.thumb}/>*/}
       </Link>
       <div className="artist-detail">
         <div className="artist-title">

@@ -5,7 +5,10 @@ import { BASE_API_URI } from '../constants';
 import axios from 'axios';
 
 export const artistApi = {
-  fetchGenreArtists
+  fetchGenreArtists,
+  fetchArtistSong,
+  fetchArtistAlbums,
+  fetchArtistInfo
 };
 
 function fetchGenreArtists({ genre, id, page } = {}) {
@@ -16,4 +19,40 @@ function fetchGenreArtists({ genre, id, page } = {}) {
   };
 
   return axios.get(`${BASE_API_URI}/media/genre-artists`, requestOptions);
+}
+
+function fetchArtistSong({ name, page } = {}) {
+  const requestOptions = {
+    method: 'GET',
+    params: { page }
+  };
+
+  return axios.get(
+    `${BASE_API_URI}/media/artist/${name}/songs`,
+    requestOptions
+  );
+}
+
+function fetchArtistAlbums({ name, page } = {}) {
+  const requestOptions = {
+    method: 'GET',
+    params: { page }
+  };
+
+  return axios.get(
+    `${BASE_API_URI}/media/artist/${name}/albums`,
+    requestOptions
+  );
+}
+
+function fetchArtistInfo({ name, page } = {}) {
+  const requestOptions = {
+    method: 'GET',
+    params: { page }
+  };
+
+  return axios.get(
+    `${BASE_API_URI}/media/artist/${name}/information`,
+    requestOptions
+  );
 }

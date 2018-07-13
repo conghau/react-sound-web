@@ -3,21 +3,16 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
-import store, { history } from './store';
+import { store, history } from './store';
 import { ConnectedRouter } from 'react-router-redux';
 import './themes/index.css';
+import routes from './routes';
 
 import registerServiceWorker from './registerServiceWorker';
-// if (process.env.NODE_ENV !== 'production') {
-//   const { whyDidYouUpdate } = require('why-did-you-update');
-//   whyDidYouUpdate(React);
-// }
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
+    <ConnectedRouter history={history}>{routes}</ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );

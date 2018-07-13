@@ -3,55 +3,106 @@
  */
 import * as types from './actionConstant';
 import { artistApi } from '../api/artistApi';
-import { isUndefined, isEmpty } from 'lodash';
-import { CONST_GENRE_ARTIST } from '../constants';
 
 export const artistAction = {
-  fetchGenreArtists
+  fetchArtist
 };
 
-function fetchGenreArtists({ genre, id, page } = {}) {
-  let type =
-    isUndefined(genre) || isEmpty(genre)
-      ? CONST_GENRE_ARTIST.VIEW_DEFAULT
-      : CONST_GENRE_ARTIST.VIEW_DETAIL;
+function fetchArtist(name, type = 'songs', page = 1) {
+  if (page) {
+    page = 1;
+  }
+  switch (type) {
+    case 'songs':
+      console.log('fetchArtistSong');
+      return fetchArtistSong({ name, page });
+    case 'albums':
+      return fetchArtistAlbums({ name, page });
+      return;
+    case 'information':
+      return fetchArtistInfo({ name, page });
+      return;
+  }
+}
+
+function fetchArtistSong({ name, page } = {}) {
   return dispatch => {
     artistApi
-      .fetchGenreArtists({ genre, id, page })
+      .fetchArtistSong({ name, page })
       .then(({ data }) => {
-        dispatch(success({ artists: data.origins, type }));
+        dispatch(success({ artist: data }));
       })
       .catch(err => {
-        dispatch(failure(err, type));
+        dispatch(failure(err));
         throw err;
       });
   };
 
-  function success({ artists, type }) {
-    if (type === CONST_GENRE_ARTIST.VIEW_DEFAULT) {
-      return {
-        type: types.FETCH_GENRE_ARTISTS_SUCCESS,
-        data: { defaultArtists: artists }
-      };
-    } else {
-      return {
-        type: types.FETCH_GENRE_DETAIL_ARTISTS_SUCCESS,
-        data: { genreArtists: artists }
-      };
-    }
+  function success({ artist }) {
+    return {
+      type: types.FETCH_SINGLE_ARTIST_SONGS_SUCCESS,
+      data: { artist: artist }
+    };
   }
 
-  function failure(error, type) {
-    if (type === CONST_GENRE_ARTIST.VIEW_DEFAULT) {
-      return {
-        type: types.FETCH_GENRE_ARTISTS_ERROR,
-        error
-      };
-    } else {
-      return {
-        type: types.FETCH_GENRE_DETAIL_ARTISTS_ERROR,
-        error
-      };
-    }
+  function failure(error) {
+    return {
+      type: types.FETCH_SINGLE_ARTIST_SONGS_ERROR,
+      error
+    };
+  }
+}
+function fetchArtistAlbums({ name, page } = {}) {
+  return dispatch => {
+    artistApi
+      .fetchArtistSong({ name, page })
+      .then(({ data }) => {
+        dispatch(success({ artists: data }));
+      })
+      .catch(err => {
+        dispatch(failure(err));
+        throw err;
+      });
+  };
+
+  function success({ artists }) {
+    return {
+      type: types.FETCH_SINGLE_ARTIST_SONGS_SUCCESS,
+      data: { artists: artists }
+    };
+  }
+
+  function failure(error) {
+    return {
+      type: types.FETCH_SINGLE_ARTIST_SONGS_ERROR,
+      error
+    };
+  }
+}
+function fetchArtistInfo({ name, page } = {}) {
+  return dispatch => {
+    artistApi
+      .fetchArtistSong({ name, page })
+      .then(({ data }) => {
+        dispatch(success({ artists: data }));
+      })
+      .catch(err => {
+        dispatch(failure(err));
+        throw err;
+      });
+  };
+
+  function success({ artists }) {
+    return {
+      type: types.FETCH_SINGLE_ARTIST_SONGS_SUCCESS,
+      data: { artists: artists }
+    };
+  }
+
+  function failure(error) {
+    return {
+      type: types.FETCH_SINGLE_ARTIST_SONGS_ERROR,
+      error
+    };
   }
 }

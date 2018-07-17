@@ -10,6 +10,8 @@ import UIReducer from './uiReducer';
 import authReducer from './authReducer';
 import queueReducer from './queueReducer';
 import playerReducer from './playerReducer';
+import trackReducer from './trackReducer';
+import chartReducer from './chartReducer';
 
 export default combineReducers({
   playerReducer,
@@ -18,5 +20,7 @@ export default combineReducers({
   songReducer,
   UIReducer,
   authReducer,
-  queueReducer
+  queueReducer,
+  trackReducer,
+  chartReducer
 });

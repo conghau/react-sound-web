@@ -1,0 +1,118 @@
+.chart {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+.chart .featured-image {
+  height: 140px;
+  background-size: 100%;
+}
+.chart .chart-list {
+  margin-top: -60px;
+}
+.chart .chart-item {
+  height: 60px;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+}
+.chart .chart-item:not(:first-child) {
+  margin: 10px;
+  border-bottom: 1px solid #f2f2f2;
+}
+.chart .chart-item > div {
+  height: inherit;
+}
+.chart .chart-item-order {
+  width: 20%;
+  float: left;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 60px;
+}
+.chart .chart-item-info {
+  width: 80%;
+  float: left;
+  padding-top: 5px;
+  padding-left: 10px;
+}
+.chart .chart-item-thumb {
+  width: 20%;
+  float: left;
+  padding: 5px 8px;
+}
+.chart .chart-item-thumb img {
+  width: 100%;
+  height: 100%;
+}
+.chart .chart-item-detail {
+  width: 80%;
+  float: right;
+}
+.chart .chart-item-detail-left {
+  width: 70%;
+  float: left;
+  height: 100%;
+}
+.chart .chart-item-detail-right {
+  width: 30%;
+  float: right;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chart .chart-item-detail-right i {
+  font-size: 17px;
+}
+.chart .chart-item-detail-right button {
+  cursor: pointer;
+}
+.chart .chart-item:first-child .chart-item-detail {
+  font-family: 'Open Sans', sans-serif;
+}
+.chart .chart-item:first-child .chart-item-detail a {
+  color: white;
+}
+.chart .chart-item-title {
+  margin-top: 5px;
+  padding-bottom: 2px;
+}
+.chart .chart-item-title a {
+  color: #888;
+  font-size: 14px;
+}
+.chart .chart-item-title a:hover {
+  text-decoration: underline;
+}
+.chart .chart-item-artist {
+  margin-top: 2px;
+}
+.chart .chart-item-artist a {
+  font-size: 12px;
+  color: #3eb4bf;
+}
+.chart .chart-item-artist a:hover {
+  color: #888;
+}
+
+.detail-first {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  padding-top: 0 !important;
+  padding-left: 20px !important;
+}
+.detail-first .chart-item-artist a:hover {
+  color: #3eb4bf !important;
+}
+.detail-first i.ion-more,
+.detail-first i.ion-android-download {
+  color: #fff !important;
+}
+
+.order-first {
+  background-image: linear-gradient(to right, #02b3e4 0%, #02ccba 100%);
+  color: #fff;
+  font-size: 25px !important;
+}

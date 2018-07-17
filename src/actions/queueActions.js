@@ -31,14 +31,15 @@ function addSongToQueue(song) {
 }
 
 function removeSongFromQueue(id) {
+  console.log('removeSongFromQueue');
   return (dispatch, getState) => {
-    const queueState = getState().queueState;
+    const queueState = getState().queueReducer;
     const queue = [...queueState.queue]; // avoid mutating the state
     const newQueue = removeById(queue, id);
     const queueIds = removeById([...queueState.ids], id);
 
     dispatch({
-      type: types.REMOVE_SONG_FROM_QUEUE_SUCCESS,
+      type: types.REMOVE_SONG_FROM_QUEUE,
       queue: newQueue,
       ids: queueIds
     });

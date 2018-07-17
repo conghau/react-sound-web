@@ -3,11 +3,13 @@
  */
 import * as types from './actionConstant';
 import { songApi } from '../api/songApi';
+import { searchApi } from '../api/searchApi';
 import { queueAction } from '../actions/queueActions';
 
 export const songAction = {
   fetchSong,
-  fetchSuggestSong
+  fetchSuggestSong,
+  searchMedia
 };
 
 function fetchSong({ name, id }) {
@@ -85,4 +87,22 @@ function fetchSuggestSong({ artistId, songId }) {
       error
     };
   }
+}
+
+function searchMedia(keyword) {
+  console.log('searchMedia');
+  return dispatch => {
+    searchApi
+      .searchMedia(keyword)
+      .then(resp => {
+        console.log(resp);
+        let {
+          data: { data }
+        } = resp;
+        return data;
+      })
+      .catch(err => {
+        throw err;
+      });
+  };
 }

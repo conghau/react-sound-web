@@ -3,7 +3,8 @@ import * as types from '../actions/actionConstant';
 const initialState = {
   queue: [],
   ids: [],
-  pushRoute: false
+  pushRoute: false,
+  idsPlaying: []
 };
 
 export default function(state = initialState, action) {
@@ -20,7 +21,7 @@ export default function(state = initialState, action) {
     case types.CLEAR_QUEUE:
       return { ...state, queue: action.queue, ids: action.ids };
 
-    case types.REMOVE_SONG_FROM_QUEUE_SUCCESS:
+    case types.REMOVE_SONG_FROM_QUEUE:
       return { ...state, queue: action.queue, ids: action.ids };
 
     case types.PLAY_USER_PLAYLIST:

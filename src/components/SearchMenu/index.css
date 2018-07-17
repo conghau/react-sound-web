@@ -1,0 +1,77 @@
+.search-menu {
+  position: absolute;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  top: 43px;
+  width: calc(100% - 40px);
+  max-height: 500px;
+  overflow-y: scroll;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+.search-menu > ul {
+  padding: 10px 20px;
+  padding-top: 0;
+}
+
+.top-result .search-li-detail {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.top-result > div {
+  margin-top: 10px;
+}
+
+.search-li-title {
+  display: inline-block;
+  font-size: 13px;
+  color: #ccc;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.search-li-detail {
+  overflow: hidden;
+  margin-top: 15px;
+  font-size: 14px;
+}
+.search-li-detail img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+
+.search-li-info {
+  width: calc(100% - 50px);
+  float: left;
+  padding-left: 20px;
+  height: 50px;
+  padding-top: 7px;
+}
+.search-li-info a {
+  color: #85c1e9;
+  font-size: 14px;
+}
+.search-li-info a:hover {
+  text-decoration: underline;
+}
+
+.search-li-artist {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #ccc;
+}
+
+.search-song {
+  padding-left: 0;
+  padding-top: 0;
+}
+.search-song-title {
+  margin-bottom: 5px;
+}
+
+.search-li-info.search-song:hover {
+  background: #fff;
+}

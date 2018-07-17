@@ -4817,7 +4817,7 @@ button.sc-ir {
   text-align: center;
 }
 .header_nav__searchBar {
-  width: 40%;
+  width: 31%;
   padding: 7px 20px;
   float: left;
   position: relative;
@@ -4888,7 +4888,7 @@ button.sc-ir {
   margin-right: 10px;
 }
 .header_nav__navRight {
-  width: 30%;
+  width: 38%;
   float: left;
   height: 50px;
 }

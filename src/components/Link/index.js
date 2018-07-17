@@ -14,7 +14,6 @@ export class Link extends React.PureComponent {
   // };
 
   render() {
-    console.log('Link___');
     const { to, className, title } = this.props;
     // return <a {...{className, title}} onClick={() => this.onClick(to)}>{this.props.children}</a>
     return (

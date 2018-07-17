@@ -16,7 +16,6 @@ export default class LinksByComma extends React.PureComponent {
 
     return (
       <div className={`comma ${className || ''}`}>
-        {console.log('LinksByComma___')}
         {data &&
           data.map((element, index) => (
             <Link

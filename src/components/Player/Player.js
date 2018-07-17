@@ -119,7 +119,7 @@ class Player extends PureComponent {
       nextProps.queue[0]
     ) {
       const { name, id } = nextProps.queue[0];
-      this.props.fetchSong(changeAlias(name), id); // changeAlias {func}: escape ut8 character
+      this.props.fetchSong({ name: changeAlias(name), id }); // changeAlias {func}: escape ut8 character
       if (/\/song\//.test(window.location.href)) {
         // only redirect if is on the song route
         this.context.router.history.push(`/song/${changeAlias(name)}/${id}`);
@@ -138,10 +138,18 @@ class Player extends PureComponent {
     const currId = this.props.id;
     let index;
 
-    for (let i = 0, length = queue.length; i < length; i++) {
+    let length = queue.length;
+    if (length <= 1) {
+      return undefined;
+    }
+
+    for (let i = 0; i < length; i++) {
       if (queue[i].id === currId) {
+        console.log(prevOrNext);
         switch (prevOrNext) {
           case 'next':
+            console.log(i);
+            console.log(length);
             index = (i + 1) % length;
             // replay the queue if the index is equal the queue length otherwise play the next song
             break;
@@ -152,6 +160,8 @@ class Player extends PureComponent {
           default:
             return null;
         }
+        console.log(index);
+        console.log(queue[index]);
         return queue[index];
       }
     }
@@ -169,9 +179,9 @@ class Player extends PureComponent {
     this.props.togglePushRoute(true); // enable .push for browserHistory
 
     if (alias) {
-      this.props.fetchSong(alias, id);
+      this.props.fetchSong({ name: alias, id });
     } else {
-      this.props.fetchSong(changeAlias(name), id); // changeAlias {func}: escape ut8 character
+      this.props.fetchSong({ name: changeAlias(name), id }); // changeAlias {func}: escape ut8 character
     }
   }
 
@@ -191,7 +201,6 @@ class Player extends PureComponent {
   }
 
   update() {
-    console.log('update');
     const lyric = this.props.lyric;
     this.updateProgressbar();
     if (!lyric.length) {
@@ -209,7 +218,7 @@ class Player extends PureComponent {
       this.audio.currentTime
     ) {
       // clear lyric when the this.audio is playing with beat only
-      updateLyric([], []);
+      updateLyric('', '');
       // updateLyric([], []);
     }
 
@@ -249,7 +258,8 @@ class Player extends PureComponent {
 
   handleChangeComplete = value => {
     if (value == 100) {
-      this.props.updateLyric([], []);
+      this.props.updateLyric('', '');
+      // this.props.updateLyric([], []);
     }
 
     this.audio.play();
@@ -368,7 +378,7 @@ class Player extends PureComponent {
         <div className="player-other">
           <button className="sc-ir" title="Loop">
             <i
-              className="ion-loop"
+              className="ion-ios-infinite"
               style={{ color: loop ? '#23B89A' : '#adb5bd' }}
               onClick={() => this.setState({ loop: !loop })}
             />
@@ -378,7 +388,7 @@ class Player extends PureComponent {
             onClick={this.props.toggleQueue}
           >
             <span className="queue-circle">{queueLength || 0}</span>
-            <img src="/svg/playlist.svg" />
+            <i className="ion-ios-list" />
           </button>
         </div>
         {isFetching && <PlayerLoader />}

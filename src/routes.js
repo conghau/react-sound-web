@@ -4,7 +4,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 // Module root components
-import UserPage from './containers/UserPage';
 
 import Loadable from 'react-loadable';
 import { Loading } from './components/Loading/index';
@@ -46,7 +45,6 @@ const LoadableChartsPage = Loadable({
 export default (
   <Switch>
     <LoadableApp>
-      <Route exact path="/user-detail" component={UserPage} />
       <Route exact path="/" component={LoadableHomePage} />
       <Route exact path="/albums" component={LoadableAlbumsPage} />
       <Route exact path="/charts" component={LoadableChartsPage} />

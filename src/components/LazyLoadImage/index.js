@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './index.sass';
 
-class LazyLoadImage extends React.Component {
+class LazyLoadImage extends React.PureComponent {
   handleImageLoaded() {
     this.tempImg = new Image();
     this.tempImg.src = this.refs.img.src;

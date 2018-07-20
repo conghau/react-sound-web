@@ -3,7 +3,6 @@ import { Link } from '../Link';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { getSongUrl } from '../../helper/func';
 import LazyloadImage from '../LazyLoadImage/index';
-import { isEmpty } from 'lodash';
 
 const Li = ({
   name,

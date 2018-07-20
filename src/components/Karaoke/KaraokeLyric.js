@@ -1,6 +1,6 @@
 // code copied from https://github.com/chentsulin/react-karaoke-lyric
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const defaultWrapperStyle = {

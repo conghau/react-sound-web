@@ -16,7 +16,8 @@ export const uiAction = {
   finishDownloading,
   finishLoading,
   startFading,
-  stopFading
+  stopFading,
+  startLoading
 };
 
 function showAnalyzer() {

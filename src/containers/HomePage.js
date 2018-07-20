@@ -13,10 +13,6 @@ import { chartActions } from '../actions/chartActions';
 import { fetchOnScroll } from '../HOC';
 
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.fetchTracks();
     this.props.fetchChart();

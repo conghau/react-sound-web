@@ -4,10 +4,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { chunk, isUndefined } from 'lodash';
-// import Pagination from '../Pagination';
 import './index.sass';
 import { CONST_GENRE_ARTIST } from '../../constants';
-import ReactPaginate from 'react-paginate';
 
 const Default = ({ origins, Card, chunkSize }) => (
   <div>
@@ -25,7 +23,7 @@ const Default = ({ origins, Card, chunkSize }) => (
 const DefaultCards = ({ title, id, albums, artists, Card, chunkSize }) => (
   <div className="view-cards">
     <div className="view-cards-title">
-      <a href="#">
+      <a>
         {title} <i className="ion-chevron-right" />
       </a>
     </div>
@@ -55,10 +53,9 @@ const GenreArtistView = props => {
     Card,
     viewType
   } = props;
-  let { artists, numberOfPages, title } = genreArtists || {};
+  let { artists } = genreArtists || {};
   if (isLoading) return <div className="loader" />;
 
-  const {} = props;
   if (isUndefined(viewType)) {
     return <div className="view" />;
   }

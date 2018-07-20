@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Karaoke from '../components/Karaoke/index';
@@ -9,14 +8,6 @@ import { isEqual } from 'lodash';
 class KaraokeContainer extends React.Component {
   //
   shouldComponentUpdate(nextProps, nextState) {
-    // const {
-    //   per1, per2, lyric1, lyric2,
-    //   isFetching,
-    //   cover,
-    //   artists_names,
-    //   name,
-    //   showInfo
-    // } = this.props;
     return !isEqual(nextProps, this.props);
   }
 

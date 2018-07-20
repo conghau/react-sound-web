@@ -94,7 +94,7 @@ const ChartItem = ({
 }) => (
   <li className="chart-item">
     <div className="chart-item-thumb">
-      <img src={thumbnail} />
+      <img src={thumbnail} alt={name} />
     </div>
     <div className="chart-item-detail">
       <div className="chart-item-detail-left">

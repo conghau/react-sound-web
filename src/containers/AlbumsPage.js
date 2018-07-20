@@ -4,13 +4,9 @@
 import React, { Component } from 'react';
 
 class AlbumsPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
-      <div classNameName="__albums_page">
+      <div className="__albums_page">
         <div>
           <div>
             <ul className="genre-menu">

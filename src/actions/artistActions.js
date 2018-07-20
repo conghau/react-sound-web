@@ -18,10 +18,10 @@ function fetchArtist(name, type = 'songs', page = 1) {
       return fetchArtistSong({ name, page });
     case 'albums':
       return fetchArtistAlbums({ name, page });
-      return;
     case 'information':
       return fetchArtistInfo({ name, page });
-      return;
+    default:
+      return {};
   }
 }
 

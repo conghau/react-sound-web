@@ -1,7 +1,6 @@
 /**
  * Created by hautruong on 7/7/18.
  */
-import * as types from '../actions/actionConstant';
 
 const initialState = {
   auth: {}

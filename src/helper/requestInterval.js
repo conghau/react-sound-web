@@ -11,7 +11,7 @@ const requestInterval = function(fn, delay) {
     return window.setInterval(fn, delay);
 
   let start = new Date().getTime();
-  const handle = new Object();
+  const handle = {};
 
   function loop() {
     const current = new Date().getTime();

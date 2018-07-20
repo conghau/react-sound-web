@@ -225,7 +225,7 @@ class Player extends PureComponent {
     for (let i = 0; i < lyric.length; i++) {
       if (
         i < lyric.length - 1 &&
-        i % 2 == 0 &&
+        i % 2 === 0 &&
         this.audio.currentTime >= lyric[i].start &&
         this.audio.currentTime <= lyric[i + 1].end
       ) {
@@ -257,7 +257,7 @@ class Player extends PureComponent {
   };
 
   handleChangeComplete = value => {
-    if (value == 100) {
+    if (value === 100) {
       this.props.updateLyric('', '');
       // this.props.updateLyric([], []);
     }

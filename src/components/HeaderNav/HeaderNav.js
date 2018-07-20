@@ -1,14 +1,10 @@
 import React from 'react';
 import { Link } from '../Link';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 import SearchMenu from '../SearchMenu';
-// import {logout} from '../../actions/auth';
-// import {clearUserPlaylist} from '../../actions/user_playlist';
 import './_HeaderNav.scss';
 import loginImg from '../../themes/assets/login.svg';
-import { songAction } from '../../actions/songActions';
 import { searchApi } from '../../api/searchApi';
 
 class HeaderNav extends React.PureComponent {
@@ -135,7 +131,7 @@ class HeaderNav extends React.PureComponent {
         {!authenticated ? (
           <div className="header_nav__auth-btns">
             <Link to="/login" className="animating_link">
-              <img src={loginImg} />
+              <img src={loginImg} alt={'Login'} />
               Log In
             </Link>
             <Link to="/signup" className="animating_link">
@@ -151,12 +147,11 @@ class HeaderNav extends React.PureComponent {
               {user.username}
             </Link>
             <a
-              href="#"
               title="Log Out"
               onClick={this.logOut.bind(this)}
               className="animating_link"
             >
-              <img src="/svg/sign-out-option.svg" />
+              <img src="/svg/sign-out-option.svg" alt="sign-out" />
             </a>
           </div>
         )}

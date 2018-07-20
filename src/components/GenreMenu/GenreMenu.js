@@ -1,15 +1,11 @@
 /**
  * Created by hautruong on 7/7/18.
  */
-import React, { PureCompoment, Component } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { SubMenu } from './SubMenu';
 
 export default class GenreMenu extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     //@todo implement logic here, currently always return false
     return false;

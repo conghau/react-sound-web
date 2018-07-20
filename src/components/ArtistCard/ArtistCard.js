@@ -10,7 +10,7 @@ const ArtistCard = props => {
   return (
     <div className="artist-card">
       <Link to={url}>
-        <img src={props.thumb} />
+        <img src={props.thumb} alt={props.name || ''} />
         {/*<LazyLoadImage className="artist-image" src={props.thumb}/>*/}
       </Link>
       <div className="artist-detail">

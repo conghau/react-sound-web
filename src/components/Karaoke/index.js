@@ -46,7 +46,7 @@ class Karaoke extends React.PureComponent {
         <div>
           {isFetching ? (
             <div className="karaoke-loader">
-              <img src="/svg/three-dots.svg" />
+              <img src="/svg/three-dots.svg" alt="loading" />
             </div>
           ) : showInfo ? (
             <div className="karaoke-info">

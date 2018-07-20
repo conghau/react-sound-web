@@ -4,10 +4,6 @@
 import React, { Component } from 'react';
 
 class PlaylistPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="__playlist_page">
@@ -86,6 +82,7 @@ class PlaylistPage extends Component {
                 <img
                   src="/svg/play-button-inside-a-circle.svg"
                   className="circle-play-icon"
+                  alt="play"
                 />
               </button>
             </div>
@@ -104,7 +101,10 @@ class PlaylistPage extends Component {
             </ul>
             <div className="album-playlist-artist-info">
               <div className="album-laylist-artist-thumb image-wrapper">
-                <img src="https://zmp3-photo.zadn.vn/skins/zmp3-v4/images/default2/220x220.jpg" />
+                <img
+                  src="https://zmp3-photo.zadn.vn/skins/zmp3-v4/images/default2/220x220.jpg"
+                  alt="thumb"
+                />
               </div>
               <div className="album-playlist-artist-description">
                 <p />

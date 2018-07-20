@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import logo from './logo.svg';
 import './App.css';
-import routes from './routes';
 // import Player from './containers/playerContainer';
-import Analyzer from './components/Analyzer/index';
 import Loadable from 'react-loadable';
 import ReactLoading from './components/Loading/index';
 import { ToastContainer } from 'react-toastify';
 import { isEmpty } from 'lodash';
-import queueContainer from './containers/queueContainer';
 
 const LoadableHeaderNav = Loadable({
   loader: () => import('./components/HeaderNav/HeaderNav'),

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from '../Link';
-import { changeAlias } from '../../helper/func';
 
 function ArtistResult(props) {
   return (

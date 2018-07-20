@@ -44,15 +44,7 @@ class ArtistPage extends Component {
   render() {
     const { props } = this;
     console.log(props);
-    const {
-      avatar,
-      cover,
-      songs,
-      artistName,
-      pageChunks,
-      pageChunkIndex,
-      numberOfPages
-    } = this.props;
+    const { avatar, cover, songs, artistName, numberOfPages } = this.props;
 
     return (
       <div className="artist-page">
@@ -73,6 +65,7 @@ class ArtistPage extends Component {
           <img
             src="/svg/play-button-inside-a-circle.svg"
             className="circle-play-icon"
+            alt="play"
           />
         </button>
 

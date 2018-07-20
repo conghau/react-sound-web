@@ -17,7 +17,7 @@ function fetchGenreArtists({ genre, id, page } = {}) {
     // headers: authHeader()
     params: { genre, id, page }
   };
-
+  console.log(process.env.NODE_ENV);
   return axios.get(`${BASE_API_URI}/media/genre-artists`, requestOptions);
 }
 

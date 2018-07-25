@@ -25,7 +25,6 @@ class HeaderNav extends React.PureComponent {
       .searchMedia(term)
       .then(resp => {
         let { data } = resp;
-        console.log(data);
         if (this.state.term.length) {
           this.setState({ searchResult: data });
         }

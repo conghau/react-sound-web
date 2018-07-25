@@ -8,10 +8,10 @@ export default class LinksByComma extends React.PureComponent {
     let { data, pathEntry, titleEntry, className } = this.props;
 
     const definePath = link => {
-      link.replace('/nghe-si/', '/artist/');
+      return link ? link.replace('/nghe-si/', '/artist/') : '#';
     };
     const defineTitle = title => {
-      title.replace('Nhiều nghệ sĩ', 'Various artists');
+      return title ? title.replace('Nhiều nghệ sĩ', 'Various artists') : null;
     };
 
     return (

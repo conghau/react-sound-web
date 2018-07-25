@@ -12,14 +12,14 @@ import LinksByComma from '../LinksByComma';
 import { Link } from '../Link';
 import { get } from 'lodash';
 import {
-  requestInterval,
-  clearRequestInterval
+  clearRequestInterval,
+  requestInterval
 } from '../../helper/requestInterval';
 import {
   changeAlias,
+  formatTime,
   getSongUrl,
-  isTwoObjectEqual,
-  formatTime
+  isTwoObjectEqual
 } from '../../helper/func';
 
 import './_Player.scss';
@@ -208,9 +208,17 @@ class Player extends PureComponent {
       return;
     }
 
-    // this.updateProgressbar();
+    const { isShowLyric } = this.props;
+
+    if (!isShowLyric) {
+      return;
+    }
 
     const { lyric1, lyric2, updateLyricPercent, updateLyric } = this.props;
+
+    if (!isShowLyric) {
+      return;
+    }
 
     // reset lyric state
     if (
@@ -219,13 +227,12 @@ class Player extends PureComponent {
     ) {
       // clear lyric when the this.audio is playing with beat only
       updateLyric('', '');
-      // updateLyric([], []);
     }
 
     for (let i = 0; i < lyric.length; i++) {
       if (
         i < lyric.length - 1 &&
-        i % 2 === 0 &&
+        i % 2 == 0 &&
         this.audio.currentTime >= lyric[i].start &&
         this.audio.currentTime <= lyric[i + 1].end
       ) {

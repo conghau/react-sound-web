@@ -36,7 +36,8 @@ class PlayerContainer extends Component {
       lyric1,
       lyric2,
       per1,
-      per2
+      per2,
+      isShowLyric
     } = this.props;
     const { name, id, source, thumbnail, artists, lyric, type } =
       songData || {};
@@ -66,13 +67,15 @@ class PlayerContainer extends Component {
         artists={artists}
         lyric={lyric}
         type={type || 'audio'}
+        isShowLyric={isShowLyric}
       />
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { songReducer, playerReducer, queueReducer } = state;
+  const { songReducer, playerReducer, queueReducer, UIReducer } = state;
+  const { showAnalyzer } = UIReducer;
   const { queue, ids } = queueReducer;
   const { songData, isFetching } = songReducer;
   const { playedPercent, lyric1, lyric2, per1, per2 } = playerReducer;
@@ -87,7 +90,8 @@ function mapStateToProps(state) {
     isFetching,
     // routing,
     queue: queue,
-    queueIds: ids
+    queueIds: ids,
+    isShowLyric: showAnalyzer || false
   };
 }
 

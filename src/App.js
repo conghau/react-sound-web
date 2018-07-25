@@ -54,8 +54,6 @@ class App extends Component {
 
         {showQueue && <LoadableQueue show={showQueue} />}
 
-        {/*<queueContainer show={showQueue}/>*/}
-
         {showPlayer && <LoadablePLayer />}
 
         <ToastContainer position="top-right" autoClose={1000} />

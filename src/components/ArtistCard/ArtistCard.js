@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from '../Link';
 import { changeAlias } from '../../helper/func';
-// import LazyLoadImage from '../../LazyLoadImage';
 import './ArtistCard';
 
 const ArtistCard = props => {
+  if (typeof props.name === 'undefined') {
+    return null;
+  }
   const url = `/artist/${changeAlias(props.name)}`;
 
   return (

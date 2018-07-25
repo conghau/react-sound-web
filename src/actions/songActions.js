@@ -90,12 +90,13 @@ function fetchSuggestSong({ artistId, songId }) {
 }
 
 function searchMedia(keyword) {
-  console.log('searchMedia');
+  console.log('searchMedia_ac');
   return dispatch => {
     searchApi
       .searchMedia(keyword)
       .then(resp => {
         console.log(resp);
+        console.log(resp.headers);
         let {
           data: { data }
         } = resp;

@@ -12,6 +12,7 @@ import queueReducer from './queueReducer';
 import playerReducer from './playerReducer';
 import trackReducer from './trackReducer';
 import chartReducer from './chartReducer';
+import albumReducer from './albumReducer';
 
 export default combineReducers({
   playerReducer,
@@ -22,5 +23,6 @@ export default combineReducers({
   authReducer,
   queueReducer,
   trackReducer,
-  chartReducer
+  chartReducer,
+  albumReducer
 });

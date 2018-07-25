@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LinksByComma from '../LinksByComma';
 import { getSongUrl } from '../../helper/func';
 import './index.sass';
-import qs from 'query-string';
+import qs from 'querystring';
 
 const Playlist = props => {
   const { songs, className, pathEntry } = props;

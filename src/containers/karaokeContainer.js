@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Karaoke from '../components/Karaoke/index';
-import { isEqual } from 'lodash';
+import { isEqual, isEmpty } from 'lodash';
 // import {updatePlayedPercent} from '../actions/player';
 
 class KaraokeContainer extends React.Component {
@@ -24,6 +24,9 @@ class KaraokeContainer extends React.Component {
       showInfo
     } = this.props;
 
+    // if (isEmpty(lyric1) && isEmpty(lyric2)) {
+    //   return null;
+    // }
     return (
       <Karaoke
         lyric1={lyric1}

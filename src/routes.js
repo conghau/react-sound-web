@@ -21,6 +21,11 @@ const LoadableAlbumsPage = Loadable({
   loader: () => import('./containers/AlbumsPage'),
   loading: Loading
 });
+
+const LoadableAlbumsPlaylistPage = Loadable({
+  loader: () => import('./containers/AlbumsPlaylistPage'),
+  loading: Loading
+});
 const LoadablePlaylistPage = Loadable({
   loader: () => import('./containers/PlaylistPage'),
   loading: Loading
@@ -55,10 +60,11 @@ export default (
         path="/genre-artists/:genre/:id"
         component={LoadableGenreArtistsPage}
       />
+      <Route exact path="/albums/:genre/:id" component={LoadableAlbumsPage} />
       <Route
         exact
         path="/album/playlist/:title/:id"
-        component={LoadablePlaylistPage}
+        component={LoadableAlbumsPlaylistPage}
       />
       <Route exact path="/song/:name/:id" component={LoadableSongPage} />
     </LoadableApp>

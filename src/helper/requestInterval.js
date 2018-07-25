@@ -30,6 +30,9 @@ const requestInterval = function(fn, delay) {
 };
 
 const clearRequestInterval = function(handle) {
+  if (!handle) {
+    return;
+  }
   window.cancelAnimationFrame
     ? window.cancelAnimationFrame(handle.value)
     : window.webkitCancelAnimationFrame

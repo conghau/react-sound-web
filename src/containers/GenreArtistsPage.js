@@ -11,7 +11,7 @@ import ArtistCard from '../components/ArtistCard/ArtistCard';
 import { Genres } from '../seed';
 import { isEmpty, isUndefined } from 'lodash';
 import { CONST_GENRE_ARTIST } from '../constants';
-import qs from 'query-string';
+import qs from 'querystring';
 import ReactPaginate from 'react-paginate';
 import { buildQueryString } from '../helper/query';
 

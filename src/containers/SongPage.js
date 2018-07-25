@@ -25,6 +25,10 @@ class SongPage extends React.PureComponent {
     this.props.showAnalyzer();
   }
 
+  componentWillUnmount() {
+    this.props.hideAnalyzer();
+  }
+
   // static getDerivedStateFromProps(nextProps, prevState) {
   //   console.log('getDerivedStateFromProps');
   //   if (nextProps.location.pathname !== prevState.pathname) {
@@ -99,9 +103,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   const { fetchSong, fetchSuggestSong } = songAction;
-  const { showAnalyzer, toggleModal } = uiAction;
+  const { showAnalyzer, toggleModal, hideAnalyzer } = uiAction;
   return bindActionCreators(
-    { fetchSong, fetchSuggestSong, showAnalyzer, toggleModal },
+    { fetchSong, fetchSuggestSong, showAnalyzer, hideAnalyzer, toggleModal },
     dispatch
   );
 }

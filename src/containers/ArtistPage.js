@@ -57,18 +57,15 @@ class ArtistPage extends Component {
             <div className="aritst-name">{artistName}</div>
           </div>
         </WithBackgroundImage>
-        <button
-          onClick={() => props.replaceQueue(songs)}
-          className="sc-ir"
-          title="play"
-        >
-          <img
-            src="/svg/play-button-inside-a-circle.svg"
-            className="circle-play-icon"
-            alt="play"
-          />
-        </button>
-
+        <div className="playlist-play-btn">
+          <a
+            onClick={() => props.replaceQueue(songs)}
+            className=""
+            title="play"
+          >
+            <i className="ion-ios-play-circle" style={{ fontSize: `40px` }} />
+          </a>
+        </div>
         {songs && (
           <Playlist
             className="artist-playlist"

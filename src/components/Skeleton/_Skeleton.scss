@@ -1,0 +1,82 @@
+
+.__skeleton {
+  &_row {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0
+  }
+  &_card {
+    width: 22%;
+    padding: 0 10px;
+    margin: auto;
+  }
+
+  &_img {
+    width: 170px;
+    height: 170px;
+  }
+  &_label {
+    width: 170px;
+    height: 10px;
+    margin: 10px 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    opacity: 0
+  }
+  10% {
+    opacity: 0.1
+  }
+  20% {
+    opacity: 0.2
+  }
+  30% {
+    opacity: 0.3
+  }
+  40% {
+    opacity: 0.4
+  }
+  50% {
+    opacity: 0.5
+  }
+  60% {
+    opacity: 0.6
+  }
+  70% {
+    opacity: 0.7
+  }
+  80% {
+    opacity: 0.8
+  }
+  90% {
+    opacity: 0.9
+  }
+}
+
+[class*="box-line"],
+[class*="box-thumbnail"],
+[class*="skeleton-loading"] {
+  max-width: 100% !important;
+  animation: timeline;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 800px auto;
+  background-position: 100px 0;
+  box-shadow: none !important;
+  &.invert {
+    background: linear-gradient(to right, white 8%, #f3f3f3 18%, white 33%);
+  }
+}
+
+@keyframes timeline {
+  0% {
+    background-position: -350px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}

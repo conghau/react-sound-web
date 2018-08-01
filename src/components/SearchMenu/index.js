@@ -5,7 +5,7 @@ import TopResult from './TopResult';
 import SongResult from './SongResult';
 import AlbumResult from './AlbumResult';
 import ArtistResult from './ArtistResult';
-import './index.sass';
+import './_SearchMenu.sass';
 
 class SearchMenu extends React.PureComponent {
   handleClickOutside = () => {
@@ -13,11 +13,9 @@ class SearchMenu extends React.PureComponent {
   };
 
   render() {
-    console.log('SearchMenu');
     const { data } = this.props.searchResult;
     if (!data) return null;
     const { top, song, video, artist, album } = data || {};
-    console.log('SearchMenu__');
     return (
       <ul className="search-menu">
         {top && (

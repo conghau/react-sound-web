@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import QueueList from './QueueList';
-import './index.sass';
+import './_Queue.sass';
 
 function Queue({ songs, toggleQueue, clearQueue, removeSongFromQueue, show }) {
   return (

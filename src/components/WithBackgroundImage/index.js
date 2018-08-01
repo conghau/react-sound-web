@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.sass';
+import './_WithBackgroundImage.sass';
 
 // opacity transition for component with background image
 

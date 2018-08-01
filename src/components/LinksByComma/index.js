@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '../Link/index';
-import './index.sass';
+import './_LinkByComma.sass';
 
 export default class LinksByComma extends React.PureComponent {
   render() {

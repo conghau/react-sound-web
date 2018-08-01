@@ -14,6 +14,8 @@ import { CONST_GENRE_ARTIST } from '../constants';
 import qs from 'querystring';
 import ReactPaginate from 'react-paginate';
 import { buildQueryString } from '../helper/query';
+import { SkeletonView } from '../components/Skeleton/index';
+import { SkeletonListViewCard } from '../components/Skeleton/SkeletonViewCard';
 
 class GenreArtistsPage extends Component {
   constructor(props) {
@@ -22,13 +24,18 @@ class GenreArtistsPage extends Component {
       pathname: this.props.location.pathname || '',
       genre: '',
       id: '',
-      page: qs.parse(props.location.search).page || 1
+      page: qs.parse(props.location.search).page || 1,
+      isLoading: false
     };
   }
 
   componentDidMount() {
     console.log('componentDidMount');
     this.onFetchGenreArtists(this.props.match.params);
+  }
+
+  componentDidCatch() {
+    this.setState({ isLoading: false });
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -44,11 +51,19 @@ class GenreArtistsPage extends Component {
     return null;
   }
 
+  // async fetchGenreArtists({genre, id, page}) {
+  //   return await this.props.fetchGenreArtists({genre, id, page});
+  // };
+
   onFetchGenreArtists = params => {
     let { genre, id } = params;
     let { page } = this.state;
-    this.props.fetchGenreArtists({ genre, id, page });
-    this.setState({ genre, id, page });
+    this.setState({ isLoading: true });
+    this.props.fetchGenreArtists({ genre, id, page }).then(() => {
+      this.setState({ genre, id, page, isLoading: false });
+    });
+    // this.setState({genre, id, page});
+    // this.setState({isLoading: false});
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -70,41 +85,51 @@ class GenreArtistsPage extends Component {
     console.log(this);
   };
 
+  renderView = () => {};
+
   render() {
     const { props } = this;
     const { genreArtists } = props;
     let { numberOfPages } = genreArtists || {};
-    const { genre } = this.state;
+    const { genre, isLoading } = this.state;
+    console.log(isLoading);
     const viewType =
       isUndefined(genre) || isEmpty(genre)
         ? CONST_GENRE_ARTIST.VIEW_DEFAULT
         : CONST_GENRE_ARTIST.VIEW_DETAIL;
+
     return (
       <div className="__artists_page">
         <GenreMenu type="genre-artist" genres={Genres} />
         <div className="view">
-          <GenreArtistView
-            chunkSize={5}
-            {...props}
-            Card={ArtistCard}
-            viewType={viewType}
-          />
-          {viewType === CONST_GENRE_ARTIST.VIEW_DETAIL && (
-            <ReactPaginate
-              previousLabel={'<<'}
-              nextLabel={'>>'}
-              pageCount={numberOfPages}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={5}
-              activeClassName={'pagination-item-active'}
-              containerClassName={'pagination'}
-              breakLabel={<a href="">...</a>}
-              breakClassName={'break-me'}
-              subContainerClassName={'pages pagination'}
-              onPageChange={e => {
-                this.handlePageClick(e);
-              }}
-            />
+          {isLoading ? (
+            <SkeletonView.SkeletonListViewCard />
+          ) : (
+            <div>
+              <GenreArtistView
+                chunkSize={5}
+                {...props}
+                Card={ArtistCard}
+                viewType={viewType}
+              />
+              {viewType === CONST_GENRE_ARTIST.VIEW_DETAIL && (
+                <ReactPaginate
+                  previousLabel={'<<'}
+                  nextLabel={'>>'}
+                  pageCount={numberOfPages}
+                  pageRangeDisplayed={5}
+                  marginPagesDisplayed={5}
+                  activeClassName={'pagination-item-active'}
+                  containerClassName={'pagination'}
+                  breakLabel={<a href="">...</a>}
+                  breakClassName={'break-me'}
+                  subContainerClassName={'pages pagination'}
+                  onPageChange={e => {
+                    this.handlePageClick(e);
+                  }}
+                />
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -113,13 +138,15 @@ class GenreArtistsPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return { ...state.genreArtistReducer, isLoading: false };
+  const { defaultArtists, genreArtists } = state.genreArtistReducer;
+  return { defaultArtists, genreArtists };
 }
 
 function mapDispatchToProps(dispatch) {
   const { fetchGenreArtists } = genreArtistAction;
   return bindActionCreators({ fetchGenreArtists }, dispatch);
 }
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

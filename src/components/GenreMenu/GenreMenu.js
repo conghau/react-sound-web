@@ -20,7 +20,7 @@ export default class GenreMenu extends Component {
             <li className="submenu-title">
               <Link
                 to={`/${type}s`}
-                activeClassName="submenu-link-active"
+                activeclassname="submenu-link-active"
               >{`${type}s`}</Link>
             </li>
           </ul>

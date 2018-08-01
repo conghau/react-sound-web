@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LinksByComma from '../LinksByComma';
 import { getSongUrl } from '../../helper/func';
-import './index.sass';
+import './_Playlist.sass';
 import qs from 'querystring';
 
 const Playlist = props => {

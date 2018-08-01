@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import KaraokeLyric from './KaraokeLyric';
 import WithBackgroundImg from '../WithBackgroundImage';
-import './index.sass';
+import './_Karaoke.sass';
 
 // const KLyric = ({text, per, fontSize}) =>
 //   <KaraokeLyric

@@ -4,7 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { chunk, isUndefined } from 'lodash';
-import './index.sass';
+import './_AlbumView.sass';
 import { CONST_ALBUM } from '../../constants';
 import AlbumCard from '../AlbumCard/AlbumCard';
 

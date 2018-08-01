@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import onClickOutside from 'react-onclickoutside';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // import { isAuthenticated } from '../../HOC';
-import './index.sass';
+import './_Dropdown.sass';
 
 class DropDown extends React.PureComponent {
   state = { mounted: false };

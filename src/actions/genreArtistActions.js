@@ -16,7 +16,7 @@ function fetchGenreArtists({ genre, id, page } = {}) {
       ? CONST_GENRE_ARTIST.VIEW_DEFAULT
       : CONST_GENRE_ARTIST.VIEW_DETAIL;
   return dispatch => {
-    artistApi
+    return artistApi
       .fetchGenreArtists({ genre, id, page })
       .then(({ data }) => {
         dispatch(success({ artists: data.origins, type }));

@@ -5,7 +5,7 @@ import { changeAlias } from '../../helper/func';
 import WithBackgroundImage from '../WithBackgroundImage';
 import LinksByComma from '../LinksByComma';
 import { haveDropDown } from '../../HOC/index';
-import './index.sass';
+import './_Chart.sass';
 
 // @haveDropDown()
 class Chart extends React.PureComponent {

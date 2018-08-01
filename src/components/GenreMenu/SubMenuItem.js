@@ -9,7 +9,7 @@ export const SubMenuItem = props => (
   <li className="submenu-li">
     <Link
       to={`/${props.type}s/${changeAlias(props.title)}/${props.id}`}
-      activeClassName="submenu-link-active"
+      activeclassname="submenu-link-active"
     >
       {props.title}
     </Link>

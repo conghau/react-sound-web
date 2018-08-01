@@ -66,7 +66,7 @@ class HeaderNav extends React.PureComponent {
 
     return (
       <nav className="header_nav">
-        <div className="logo">
+        <div className="header_nav__logo">
           <Link to="/">iSound</Link>
         </div>
         <div className="header_nav__searchBar">
@@ -163,8 +163,8 @@ HeaderNav.propTypes = {
   auth: PropTypes.shape({
     authenticated: PropTypes.bool.isRequired,
     errors: PropTypes.object.isRequired
-  }),
-  dispatch: PropTypes.func.isRequired
+  })
+  // dispatch: PropTypes.func.isRequired
 };
 
 export default HeaderNav;

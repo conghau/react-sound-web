@@ -4,7 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { chunk, isUndefined } from 'lodash';
-import './index.sass';
+import './_GenreArtistView.sass';
 import { CONST_GENRE_ARTIST } from '../../constants';
 
 const Default = ({ origins, Card, chunkSize }) => (
@@ -45,16 +45,8 @@ const Row = ({ chunk, Card }) => (
 );
 
 const GenreArtistView = props => {
-  const {
-    isLoading,
-    chunkSize,
-    defaultArtists,
-    genreArtists,
-    Card,
-    viewType
-  } = props;
+  const { chunkSize, defaultArtists, genreArtists, Card, viewType } = props;
   let { artists } = genreArtists || {};
-  if (isLoading) return <div className="loader" />;
 
   if (isUndefined(viewType)) {
     return <div className="view" />;
@@ -79,8 +71,7 @@ GenreArtistView.propTypes = {
   pageChunkIndex: PropTypes.number,
   changePageChunkIndex: PropTypes.func,
   chunkSize: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  // type: PropTypes.string.isRequired,
   viewType: PropTypes.string
 };
 

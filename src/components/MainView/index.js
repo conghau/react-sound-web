@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { chunk, isUndefined } from 'lodash';
 // import Pagination from '../Pagination';
-import './index.sass';
+import './_MainView.sass';
 import { CONST_GENRE_ARTIST } from '../../constants';
 
 const MainView = props => {

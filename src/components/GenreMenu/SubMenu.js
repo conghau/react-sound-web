@@ -10,7 +10,7 @@ export const SubMenu = ({ name, id, title, children, type }) => (
     <li className="submenu-title">
       <Link
         to={`/${type}s/${name}/${id}`}
-        activeClassName="submenu-link-active"
+        activeclassname="submenu-link-active"
       >
         {title}
       </Link>

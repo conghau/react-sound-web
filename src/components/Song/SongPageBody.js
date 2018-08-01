@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SuggestedSection from './SuggestedSection';
-import './index.sass';
+import './_Song.sass';
 
 const propTypes = {
   suggestedSongs: PropTypes.array.isRequired

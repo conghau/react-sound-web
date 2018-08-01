@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './index.sass';
+import './_Analyzer.sass';
 
 const Analyzer = ({ show }) => (
   <div id="analyzer" style={{ display: show ? 'block' : 'none' }}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './index.sass';
+import './_LazyLoadImage.sass';
 
 class LazyLoadImage extends React.PureComponent {
   handleImageLoaded() {

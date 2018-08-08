@@ -1,0 +1,42 @@
+{
+  "name": "soundz",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "jest": "^23.4.2",
+    "jest-react-native": "^18.0.0",
+    "react-native-debugger-open": "^0.3.17",
+    "react-test-renderer": "16.3.1"
+  },
+  "scripts": {
+    "postinstall": "rndebugger-open",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "lodash": "^4.17.10",
+    "react": "16.3.1",
+    "react-loadable": "^5.4.0",
+    "react-native": "~0.55.2",
+    "react-native-contacts": "^2.2.2",
+    "react-native-elements": "^0.19.1",
+    "react-native-vector-icons": "^5.0.0",
+    "react-native-video": "^3.1.0",
+    "react-navigation": "^2.10.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
+  }
+}
